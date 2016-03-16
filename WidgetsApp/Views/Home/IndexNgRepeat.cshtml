@@ -1,0 +1,21 @@
+﻿<div ng-app="WidgetApp">
+	Scope Id: {{$id}}
+	<div ng-controller="HomeCtrl">
+		Scope Id: {{$id}}<br />
+		Colour Filter: <input ng-model="colourFilter"><br />
+		New Colour: <input ng-model="newColour" />
+		<button onclick="addColour()">Add Colour</button>
+		<ul>
+			<li ng-repeat="colour in colours | filter:colourFilter | orderBy:'toString()':true">
+				{{$index}} {{$odd}} {{colour}}
+				Scope Id: {{$id}}
+			</li>
+		</ul>
+		Continent Filter: <input ng-model="continentFilter">
+		<ul>
+			<li ng-repeat="country in (countries | filter:{continent:continentFilter} | orderBy:'name')">
+				{{country.capital}}, {{country.name}}
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,93 @@
+﻿<style>
+	input.ng-touched.ng-invalid {
+		border:2px solid red;
+	}
+
+	[type='text'] {
+		border:2px solid blue;
+	}
+
+	textarea {
+		vertical-align:top;
+	}
+</style>
+<div ng-app="WidgetApp">
+	<div ng-controller="HomeCtrl">
+		<form name="contactForm" novalidate ng-submit="submitForm($event)">
+			<div>
+				<label>
+					First Name
+					<input type="text" ng-model="person.firstName" name="personFirstName" required />
+					<span ng-show="contactForm.personFirstName.$invalid &&
+						contactForm.personFirstName.$touched">
+						Please enter a first name!
+					</span>
+				</label>
+			</div>
+			<div>
+				<label>
+					Age
+					<input ng-model="person.age" name="personAge" type="number" />
+					<span ng-show="contactForm.personAge.$invalid">
+						Please enter a valid age!
+					</span>
+				</label>
+			</div>
+			<fieldset>
+				<legend>Type of Customer</legend>
+				<div>
+					<label>
+						<input type="radio"
+									 name="personTypeOfCustomer"
+									 ng-model="person.typeOfCustomer"
+									 value="residential" />
+						Residential
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio"
+									 name="personTypeOfCustomer"
+									 ng-model="person.typeOfCustomer"
+									 value="commercial" />
+						Commercial
+					</label>
+				</div>
+				<div>
+					<label>
+						<input type="radio"
+									 name="personTypeOfCustomer"
+									 ng-model="person.typeOfCustomer"
+									 value="government" />
+						Government
+					</label>
+				</div>
+			</fieldset>
+
+			<div>
+				<label>
+					Residence:
+					<select ng-model="person.residence"
+									ng-options="country.code as country.name
+									group by country.continent for country in
+									countries | orderBy:'continent'">
+						<option value="">Select One...</option>
+					</select>
+				</label>
+			</div>
+
+			<div>
+				<label>
+					Comments:
+					<textarea ng-model="person.comments" rows="5" cols="40"></textarea>
+				</label>
+			</div>
+
+			<button type="submit" xng-click="submitForm()" name="submit1">Submit 1</button>
+
+			<button type="submit" xng-click="submitForm()" name="submit2">Submit 2</button>
+
+
+		</form>
+	</div>
+</div>
