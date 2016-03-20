@@ -220,6 +220,7 @@
     <Content Include="Content\partials\app.widget-list.tpl.html" />
     <Content Include="Content\partials\app.widget-edit.tpl.html" />
     <Content Include="Content\partials\app.widget-view.tpl.html" />
+    <Content Include="Content\partials\demo.html" />
     <Content Include="Content\Site.css" />
     <Content Include="css\jasmine.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -236,6 +237,26 @@
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\app_widgets_svc.js" />
+    <Content Include="Scripts\app\app_promise_group.js" />
+    <Content Include="Scripts\app\app_promises.js" />
+    <Content Include="Scripts\app\app_promise_chaining.js" />
+    <Content Include="Scripts\app\app_controller_inheritance.js" />
+    <Content Include="Scripts\app\app_three_ways_to_create_a_service.js" />
+    <Content Include="Scripts\app\app-dir-attrs.js" />
+    <Content Include="Scripts\app\app_custom_tabs_prelink.js" />
+    <Content Include="Scripts\app\app_custom_tabs_dir.js" />
+    <Content Include="Scripts\app\app_custom_validator.js" />
+    <Content Include="Scripts\app\app_require_controller.js" />
+    <Content Include="Scripts\app\app_priority.js" />
+    <Content Include="Scripts\app\app_isolated_scope.js" />
+    <Content Include="Scripts\app\app_cch_repeat.js" />
+    <Content Include="Scripts\app\app_custom_transclude.js" />
+    <Content Include="Scripts\app\app_compile_svc.js" />
+    <Content Include="Scripts\app\app_transclude.js" />
+    <Content Include="Scripts\app\app_four_custom_dir_forms.js" />
+    <Content Include="Scripts\app\app_ctrl_inheritance.js" />
+    <Content Include="Scripts\app\app_filters.js" />
     <Content Include="Scripts\app\app_watches.js" />
     <Content Include="Scripts\app\app_form.js" />
     <Content Include="Scripts\app\app_controller_as.js" />
@@ -291,7 +312,9 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Home\IndexWatches.cshtml" />
+    <Content Include="Views\Home\IndexTabs.cshtml" />
+    <Content Include="Views\Home\IndexCustomDirAttrs.cshtml" />
+    <Content Include="Views\Home\IndexControllerInheritanceEvents.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

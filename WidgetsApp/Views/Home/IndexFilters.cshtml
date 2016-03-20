@@ -1,0 +1,12 @@
+﻿<div ng-app="WidgetApp">
+	<div ng-controller="HomeCtrl">
+		{{message | cchUpperCase | cchAppend:'!!!!'}}
+
+		<ul>
+			<li ng-repeat="country in countries | asianCountries">
+				{{country.name}}
+			</li>
+		</ul>
+
+	</div>
+</div>

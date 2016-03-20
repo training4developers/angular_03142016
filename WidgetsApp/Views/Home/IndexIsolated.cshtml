@@ -1,0 +1,10 @@
+﻿<div ng-app="WidgetApp">
+	<div ng-controller="HomeCtrl">
+		Outside Dir Scope Id: {{$id}}<br />
+		Outside Message: {{message}}<br />
+		<input ng-model='message'><br />
+		<div my-dir="message" one-way="{{message | uppercase}}" fn="doSomething()">
+
+		</div>
+	</div>
+</div>

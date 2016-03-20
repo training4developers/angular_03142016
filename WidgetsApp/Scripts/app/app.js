@@ -1,65 +1,76 @@
 ﻿"use strict";
 
-angular.module("WidgetApp", [])
-	.filter("cchUpperCase", function () {
+angular.module("WidgetApp", ["ui.router"])
 
-		return function (value) {
-			return String(value).toUpperCase();
+	.factory("widgets", function($http) {
+
+		return {
+			getAll: function () {
+				return $http.get("/api/widgets");
+			},
+			get: function(widgetId) {
+				return $http.get("/api/widgets/" + encodeURIComponent(widgetId));
+			},
+			insert: function(widget) {
+				return $http.post("/api/widgets/", widget);
+			},
+			update: function(widget) {
+				return $http.put("/api/widgets/" + encodeURIComponent(widget.id), widget);
+			},
+			delete: function(widgetId) {
+				return $http.delete("/api/widgets/" + encodeURIComponent(widgetId));
+			}
 		};
 
 	})
-	.filter("cchAppend", function () {
-		return function (value, strToAppend) {
-			return String(value) + String(strToAppend);
-		}
-	})
-	.filter("asianCountries", function () {
+	.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-		return function (list) {
-			return list.filter(function (country) {
-				return country.continent === "Asia";
+		$urlRouterProvider.otherwise("/");
+		$locationProvider.html5Mode(false);
+
+		$stateProvider
+			.state("template", {
+				abstract: true,
+				views: {
+					header: {
+						template: "header <div ui-view='nav'></div>",
+						controller: function () { }
+					},
+					content: {
+						template: "content <div ui-view></div>"
+					},
+					footer: {
+						template: "footer",
+						controller: function () { }
+					}
+				}
+			})
+			.state("home", {
+				parent: "template",
+				url: "/",
+				views : {
+					"": {
+						template: "Home",
+						controller: function () {}
+					},
+					'nav': {
+						template: "<a ui-sref='about'>About</a>"
+					}
+				}
+			})
+			.state("about", {
+				parent: "template",
+				url: "/about",
+				views : {
+					"": {
+						template: "About",
+						controller: function() {}
+					},
+					'nav': {
+						template: "<a ui-sref='home'>Home</a>"
+					}
+				}
 			});
-		};
-
-	})
-	.controller("HomeCtrl", function ($scope) {
-
-		$scope.message = "Hi Class";
-
-		$scope.countries = [
-	{ code: "UA", name: "Ukraine", capital: "Kiev", continent: "Europe" },
-	{ code: "VN", name: "Vietnam", capital: "Hanoi", continent: "Asia" },
-	{ code: "IE", name: "Ireland", capital: "Dublin", continent: "Europe" },
-	{ code: "IN", name: "India", capital: "New Delhi", continent: "Asia" },
-	{ code: "CI", name: "Ivory Coast", capital: "Yamoussoukro", continent: "Africa" },
-	{ code: "NP", name: "Nepal", capital: "Kathmandu", continent: "Asia" },
-	{ code: "UK", name: "United Kingdom", capital: "London", continent: "Europe" },
-	{ code: "US", name: "United States", capital: "Washington", continent: "North America" },
-	{ code: "KO", name: "South Korea", capital: "Seoul", continent: "Asia" }
-		];
 
 	});
-
-
-//function Person(firstName, lastName) {
-//	this.firstName = firstName;
-//	this.lastName = lastName;
-//}
-
-//Person.prototype.getFullName = function () {
-//	return this.firstName + " " + this.lastName;
-//};
-
-//console.dir(Person);
-
-
-//var p = new Person("Bob", "Smith");
-//console.dir(p);
-
-//console.log(Person.prototype === Object.getPrototypeOf(p));
-//console.log(Person.prototype === Object.getPrototypeOf(Person));
-
-
-//var p2 = Person.call({}, "Jane", "Doe");
-//console.dir(p2);
 
